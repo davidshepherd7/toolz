@@ -362,7 +362,7 @@ class Compose(object):
 
     def __call__(self, *args, **kwargs):
         ret = self.funcs[0](*args, **kwargs)
-        for f in self.funcs[:-1]:
+        for f in self.funcs[1:]:
             ret = f(ret)
         return ret
 
