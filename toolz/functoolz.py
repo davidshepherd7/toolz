@@ -358,12 +358,11 @@ class Compose(object):
     __slots__ = ['funcs']
 
     def __init__(self, *funcs):
-        self.funcs = funcs
+        self.funcs = list(reversed(funcs))
 
     def __call__(self, *args, **kwargs):
-        fns = list(reversed(self.funcs))
-        ret = fns[0](*args, **kwargs)
-        for f in fns[1:]:
+        ret = self.funcs[0](*args, **kwargs)
+        for f in self.funcs[1:]:
             ret = f(ret)
         return ret
 
